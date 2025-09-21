@@ -1,0 +1,57 @@
+﻿<Window x:Class="Subnet_Mask_Calculator_with_GUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Subnet_Mask_Calculator_with_GUI"
+        mc:Ignorable="d"
+        Title="Subnet Mask and Network Address Calculator" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Height="50" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Label Height="50" Content="CALCULATE SUBNET MASK, NETWORK ADDRESS ETC." FontSize="25" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Width="1000">
+            <Label Height="40" Width="400" Content="Enter IP Address:" Margin="100 0 0 0" VerticalAlignment="Bottom" FontSize="20"/>
+            <Label Height="40" Width="400" Content="Enter Subnet Prefix:" Margin="0 0 0 0" VerticalAlignment="Bottom" FontSize="20"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="40" Width="1000">
+            <TextBox Name="txtIpAddresss" Width="200" Height="40" Margin="105 0 0 0" FontSize="20" VerticalContentAlignment="Center" VerticalAlignment="Top"/>
+            <TextBox Name="txtPrefixLength" Width="50" Height="40" Margin="200 0 0 0" FontSize="20" VerticalContentAlignment="Center" VerticalAlignment="Top"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="1000">
+            <Button Name="Calculate" Height="40" Width="150" Margin="105 0 0 0 " Content="Calculate" Click="Calculate_Click" FontSize="20" HorizontalContentAlignment="Center"/>
+            <Button Name="Clear" Height="40" Width="150" Margin="10 0 0 0 " Content="Clear" Click="Clear_Click" FontSize="20" HorizontalContentAlignment="Center"/>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="1000">
+            <Label Height="40" Width="115" Content="Subnet Mask:" Margin="100 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="18"/>
+            <Label Name="lblMask" Height="40" Width="170" Margin="0 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="18"/>
+            <Label Height="40" Width="150" Content="Network Address:" Margin="115 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="18"/>
+            <Label Name="lblNetwork" Height="40" Width="170" Margin="0 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="18"/>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="1000">
+            <Label Height="40" Width="175" Content="First Usable Address:" Margin="100 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="18"/>
+            <Label Name="lblFirstUsable" Height="40" Width="170" Margin="0 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="18"/>
+            <Label Height="40" Width="175" Content="Last Usable Address:" Margin="55 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="18"/>
+            <Label Name="lblLastUsable" Height="40" Width="170" Margin="0 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="18"/>
+        </StackPanel>
+        <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="1000">
+            <Label Height="40" Width="160" Content="Broadcast Address:" Margin="100 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="18"/>
+            <Label Name="lblBroadcast" Height="40" Width="170" Margin="0 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="18"/>
+            <Label Height="40" Width="175" Content="Max. available hosts:" Margin="70 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="18"/>
+            <Label Name="lblHosts" Height="40" Width="170" Margin="0 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="18"/>
+        </StackPanel>
+
+
+    </Grid>
+</Window>

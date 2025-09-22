@@ -51,15 +51,13 @@ namespace Subnet_Mask_Calculator_with_GUI
                 Clear_All();
             }
         }
-    
-    
-        private byte ip1 { get; set; }   
-        private byte ip2 { get; set; }       
-        private byte ip3 { get; set; }   
-        public byte ip4 { get; set; }
-        private int prefixLength { get; set; }
-        
 
+
+        private byte ip1;
+        private byte ip2;
+        private byte ip3;
+        private byte ip4;
+        private int prefixLength;
         private void SplitIpAddress(string ipAddress, int prefixLength)
         {
             var segments = ipAddress.Split('.');

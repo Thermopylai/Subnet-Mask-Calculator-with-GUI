@@ -1,5 +1,7 @@
 ﻿using System.Diagnostics.Eventing.Reader;
+using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -12,17 +14,19 @@ using System.Windows.Shapes;
 
 namespace Subnet_Mask_Calculator_with_GUI
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+    
     public partial class MainWindow : Window
     {
+        private byte ip1;
+        private byte ip2;
+        private byte ip3;
+        private byte ip4;
+        private int prefixLength;
         public MainWindow()
         {
             InitializeComponent();
             Clear_All();
         }
-
         private void Clear_All()
         {
             txtIpAddresss.Clear();
@@ -43,49 +47,32 @@ namespace Subnet_Mask_Calculator_with_GUI
         private void Calculate_Click(object sender, RoutedEventArgs e)
         {
             int prefixLength;
-            if(int.TryParse(txtPrefixLength.Text, out prefixLength))
-                SplitIpAddress(txtIpAddresss.Text, prefixLength);
-            else
+            Regex regex = new Regex(@"^(([01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}([01]?\d{1,2}|2[0-4]\d|25[0-5]){1}$");
+            if (!int.TryParse(txtPrefixLength.Text, out prefixLength) || prefixLength < 0 || prefixLength > 32)
             {
                 MessageBox.Show("Invalid input. Subnet prefix length must be 0-32.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                 Clear_All();
             }
-        }
-
-
-        private byte ip1;
-        private byte ip2;
-        private byte ip3;
-        private byte ip4;
-        private int prefixLength;
-        private void SplitIpAddress(string ipAddress, int prefixLength)
-        {
-            var segments = ipAddress.Split('.');
-
-            if (segments.Length != 4)
+            else if (!regex.IsMatch(txtIpAddresss.Text))
             {
                 MessageBox.Show("Invalid IP Address format. Enter 4 numbers (0-255) separated with a dot.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                 Clear_All();
-                return;
             }
             else
             {
-                ip1 = byte.Parse(segments[0]);
-                ip2 = byte.Parse(segments[1]);
-                ip3 = byte.Parse(segments[2]);
-                ip4 = byte.Parse(segments[3]);
-                if (prefixLength < 0 || prefixLength > 32)
-                {
-                    MessageBox.Show("Invalid input. Subnet prefix length must be 0-32.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
-                    Clear_All();
-                    return;
-                }
-                else
-                {
-                    this.prefixLength = prefixLength;
-                    DisplayResults();
-                }
+                SplitIpAddress(txtIpAddresss.Text, prefixLength);
             }
+        }
+
+        private void SplitIpAddress(string ipAddress, int prefixLength)
+        {
+            var segments = ipAddress.Split('.');
+            ip1 = byte.Parse(segments[0]);
+            ip2 = byte.Parse(segments[1]);
+            ip3 = byte.Parse(segments[2]);
+            ip4 = byte.Parse(segments[3]);
+            this.prefixLength = prefixLength;
+            DisplayResults();
         }
 
         private void DisplayResults()
